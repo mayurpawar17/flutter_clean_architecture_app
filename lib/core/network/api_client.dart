@@ -39,6 +39,26 @@ class ApiClient {
     }
   }
 
+  // Generic POST request helper
+  Future<Response<T>> post<T>(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    try {
+      final response = await _dio.post<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+      );
+      return response;
+    } on DioException catch (e) {
+      throw _handleDioError(e);
+    }
+  }
+
   // Custom error handler to map Dio errors to friendly exceptions
   Exception _handleDioError(DioException error) {
     switch (error.type) {

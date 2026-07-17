@@ -2,7 +2,6 @@ import 'package:clean_architecture_app/features/product/presentation/pages/produ
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'core/di/di.dart' as di;
 import 'core/di/injection_container.dart';
 import 'features/product/presentation/bloc/product_bloc.dart';
 

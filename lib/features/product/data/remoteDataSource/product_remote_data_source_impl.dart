@@ -20,4 +20,14 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
         .map((product) => ProductModel.fromJson(product))
         .toList();
   }
+
+  @override
+  Future<ProductModel> addProduct(ProductModel product) async {
+    final response = await _apiClient.post(
+      ApiConstants.productEndPoint,
+      data: product.toJson(),
+    );
+
+    return ProductModel.fromJson(response.data);
+  }
 }

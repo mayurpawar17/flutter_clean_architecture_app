@@ -2,4 +2,5 @@ import 'package:clean_architecture_app/features/product/domain/entities/product.
 
 abstract class ProductRepository {
   Future<List<Product>> getProducts();
+  Future<Product> addProduct(Product product);
 }

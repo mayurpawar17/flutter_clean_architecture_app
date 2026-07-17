@@ -31,3 +31,12 @@ class ProductFailure extends ProductState {
   @override
   List<Object?> get props => [error];
 }
+
+class ProductAddSuccess extends ProductState {
+  final Product product;
+
+  ProductAddSuccess(this.product);
+
+  @override
+  List<Object?> get props => [product];
+}

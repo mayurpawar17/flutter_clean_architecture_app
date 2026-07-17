@@ -18,6 +18,8 @@ import '../../features/product/data/remoteDataSource/product_remote_data_source_
     as _i533;
 import '../../features/product/data/repo/product_repository_imp.dart' as _i985;
 import '../../features/product/domain/repo/product_repository.dart' as _i447;
+import '../../features/product/domain/usecases/add_product_use_case.dart'
+    as _i704;
 import '../../features/product/domain/usecases/get_products_use_case.dart'
     as _i936;
 import '../../features/product/presentation/bloc/product_bloc.dart' as _i415;
@@ -43,14 +45,21 @@ extension GetItInjectableX on _i174.GetIt {
         productRemoteDataSource: gh<_i123.ProductRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i704.AddProductUseCase>(
+      () => _i704.AddProductUseCase(
+        productRepository: gh<_i447.ProductRepository>(),
+      ),
+    );
     gh.lazySingleton<_i936.GetProductsUseCase>(
       () => _i936.GetProductsUseCase(
         productRepository: gh<_i447.ProductRepository>(),
       ),
     );
     gh.factory<_i415.ProductBloc>(
-      () =>
-          _i415.ProductBloc(getProductsUseCase: gh<_i936.GetProductsUseCase>()),
+      () => _i415.ProductBloc(
+        getProductsUseCase: gh<_i936.GetProductsUseCase>(),
+        addProductUseCase: gh<_i704.AddProductUseCase>(),
+      ),
     );
     return this;
   }
