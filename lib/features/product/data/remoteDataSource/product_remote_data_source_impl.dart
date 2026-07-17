@@ -1,9 +1,11 @@
 import 'package:clean_architecture_app/core/network/api_constants.dart';
 import 'package:clean_architecture_app/features/product/data/models/product_model.dart';
 import 'package:clean_architecture_app/features/product/data/remoteDataSource/product_remote_data_source.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/network/api_client.dart';
 
+@LazySingleton(as: ProductRemoteDataSource)
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   final ApiClient _apiClient;
 

@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/di/di.dart' as di;
+import 'core/di/injection_container.dart';
 import 'features/product/presentation/bloc/product_bloc.dart';
 
 void main() {
-  di.init();
+  // 1. MUST be called first to ensure Flutter engine services are ready.
+  // This is mandatory because SharedPreferences/SQLite initialization talks to native host code.
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
 
   runApp(MyApp());
 }
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => di.sl<ProductBloc>())],
+      providers: [BlocProvider(create: (context) => sl<ProductBloc>())],
 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
